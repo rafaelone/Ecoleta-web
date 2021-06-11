@@ -1,14 +1,19 @@
 import React from 'react';
-import { Route, BrowserRouter } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import Home from './pages/Home';
 import CreatePoint from './pages/CreatePoint';
 
 const Routes = () => {
   return (
-    <BrowserRouter>
-      <Route component={Home} path="/" exact />
-      <Route component={CreatePoint} path="/create-point" />
-    </BrowserRouter>
+  
+     <Switch>
+       <Route path="/" exact render={() => <Redirect
+            to="/home"
+          />}/>
+      <Route component={Home} path={`${process.env.PUBLIC_URL}/home`} exact />
+      <Route component={CreatePoint} path={`${process.env.PUBLIC_URL}/create-point`} exact />
+     </Switch>
+    
   );
 };
 
